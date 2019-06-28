@@ -55,7 +55,7 @@ var http = require('http'),
     fs = require('fs')
 var _dirname = 'C:/Users/Alejandro Chávez/Documents/Testing/OpenBCI/OpenBCI-Project';
     // NEVER use a Sync function except at start-up!
-    index = fs.readFileSync(_dirname + '/index.html');
+    index = fs.readFileSync(_dirname + '/Index.html');
 
 // Send index.html to all requests
 var app = http.createServer(function(req, res) {
