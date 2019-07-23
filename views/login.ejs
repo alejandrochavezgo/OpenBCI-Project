@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Head -->
+    <% include partials/g_head %>
+    <link href="/css/placeholder-center.css" rel="stylesheet" type="text/css">
+    <title>Login</title>
+</head>
+<body>
+    <div id="outer">
+        <div id="inner">
+            <div id="welcome" class="no-display fadein">
+                Bienvenido
+            </div>
+            <div id="login" class="no-display login-region">
+                <div class="login-region-header">
+                    Login
+                </div>
+                <div class="login-region-body">
+                    <form id="loginForm" action="/login" method="POST" class="no-display">
+                        <input id="email" type="email" name="email" class="col-12 form-login-input" placeholder="Email"><br><br>
+                        <input id="password" type="password" name="password" class="col-12 form-login-input" placeholder="Password"><br><br><br>
+                        <button type="button" class="form-login-button">OK</button>
+                    </form>
+                </div>
+            </div>
+
+            <% if(message.length > 0) { %>
+                <div class="alert alert-danger">
+                    <%= message %>
+                </div> 
+            <% } %>
+        </div>
+    </div>
+    
+    <footer class="footer no-display">
+        Instituto Tecnológico de Tijuana © 2019 - Tijuana, Baja California.
+    </footer>
+
+
+    <!-- Scripts -->
+    <% include partials/g_scripts %>
+    <script type="text/javascript" src="/js/initLogin.js"></script>
+</body>
+</html>

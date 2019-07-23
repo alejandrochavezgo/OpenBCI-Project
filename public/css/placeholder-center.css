@@ -1,0 +1,19 @@
+::-webkit-input-placeholder {
+    text-align: center;
+    font-size: 13px;
+ }
+ 
+ :-moz-placeholder { /* Firefox 18- */
+    text-align: center;
+    font-size: 13px;
+ }
+ 
+ ::-moz-placeholder {  /* Firefox 19+ */
+    text-align: center; 
+    font-size: 13px;
+ }
+ 
+ :-ms-input-placeholder {  
+    text-align: center;
+    font-size: 13px;
+ }
