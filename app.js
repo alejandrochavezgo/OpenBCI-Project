@@ -14,7 +14,7 @@ mongoose.connect(url, {
     useNewUrlParser: true
 });
 
-// require('./config/passport')(passport);
+require('./config/passport')(passport);
 
 //Server settings
 const app = express();
