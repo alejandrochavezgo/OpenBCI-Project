@@ -17,10 +17,10 @@
                     Login
                 </div>
                 <div class="login-region-body">
-                    <form id="loginForm" action="/login" method="POST" class="no-display">
-                        <input id="email" type="email" name="email" class="col-12 form-login-input" placeholder="Email"><br><br>
-                        <input id="password" type="password" name="password" class="col-12 form-login-input" placeholder="Password"><br><br><br>
-                        <button type="button" class="form-login-button">OK</button>
+                    <form id="loginForm" action="/login" method="post">
+                        <input id="email" type="email" name="email" class="col-12 form-login-input no-display" placeholder="Email"><br><br>
+                        <input id="password" type="password" name="password" class="col-12 form-login-input no-display" placeholder="Password"><br><br><br>
+                        <button id="btnLogin" type="button" class="form-login-button no-display">OK</button>
                     </form>
                 </div>
             </div>
@@ -33,7 +33,7 @@
         </div>
     </div>
     
-    <footer class="footer no-display">
+    <footer id="footer" class="footer no-display">
         Instituto Tecnológico de Tijuana © 2019 - Tijuana, Baja California.
     </footer>
 

@@ -15,11 +15,18 @@ function welcome() {
                             setTimeout(() => {
                                 $('#login').addClass('login-card-expand');
                                 setTimeout(() => {
-                                    $('#loginForm').fadeIn(400);
-                                    $('#loginForm').promise().done(function () {
+                                    $('#email').fadeIn(400);
+                                    $('#password').fadeIn(400);                                    
+                                    $('#password').promise().done(function () {
                                         setTimeout(() => {
-                                            $('#email').focus();
-                                        }, 400);
+                                            $('#btnLogin').fadeIn(400);
+                                            $('#btnLogin').promise().done(function(){
+                                                $('#footer').fadeIn(400);
+                                                $('#footer').promise().done(function(){
+                                                    $('#email').focus();
+                                                });
+                                            });
+                                        }, 200);
                                     });
                                 }, 600);
                             }, 400);
