@@ -1,8 +1,9 @@
 $( document ).ready(function() {
-    welcome();
+    Init();
 });
 
-function welcome() {
+
+function Init() {
     setTimeout(() => {
         $(".fadein").fadeIn(600);   
         $(".fadein").promise().done(function () {
@@ -13,22 +14,14 @@ function welcome() {
                         $('#login').fadeIn(400);
                         $('#login').promise().done(function () {
                             setTimeout(() => {
-                                $('#login').addClass('login-card-expand');
+                                $('#login').addClass('card-expand');
                                 setTimeout(() => {
-                                    $('#email').fadeIn(400);
-                                    $('#password').fadeIn(400);                                    
-                                    $('#password').promise().done(function () {
-                                        setTimeout(() => {
-                                            $('#btnLogin').fadeIn(400);
-                                            $('#btnLogin').promise().done(function(){
-                                                $('#footer').fadeIn(400);
-                                                $('#footer').promise().done(function(){
-                                                    $('#email').focus();
-                                                });
-                                            });
-                                        }, 200);
+                                    $('#loginForm').fadeIn(400);
+                                    $('#footer').fadeIn(400);
+                                    $('#footer').promise().done(function(){
+                                        $('#email').focus();
                                     });
-                                }, 600);
+                                }, 700);
                             }, 400);
                         });
                     }, 400);

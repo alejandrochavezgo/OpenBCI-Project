@@ -68,7 +68,7 @@ module.exports = function(passport){
                 //No existe un usuario con este email
                 return done(null, false, req.flash('loginMessage', 'Este usuario no existe'));
             } 
-            else if(!user.validatePassword(password))
+            else if(!user.validPassword(password))
             {
                 //Si existe el usuario, pero la contraseña es incorrecta
                 return done(null, false, req.flash('loginMessage', 'La contraseña es incorrecta'));

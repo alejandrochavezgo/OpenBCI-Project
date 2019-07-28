@@ -4,27 +4,20 @@
     <!-- Head -->
     <% include partials/g_head %>
     <link href="/css/placeholder-center.css" rel="stylesheet" type="text/css">
-    <title>Login</title>
+    <title>Signup</title>
 </head>
 <body>
     <div id="outer">
         <div id="inner">
-            <div id="welcome" class="no-display fadein">
-                Bienvenido
-            </div>
-            <div id="login" class="no-display card-region">
+            <div id="signup" class="no-display card-region">
                 <div class="card-region-header">
-                    Login
+                    Nuevo Usuario
                 </div>
                 <div class="card-region-body">
-                    <form id="loginForm" action="/login" method="post" class="no-display">
+                    <form id="signupForm" action="/signup" method="post" class="no-display">
                         <input id="email" type="email" name="email" class="col-12 form-card-input mb-4" placeholder="Email">
                         <input id="password" type="password" name="password" class="col-12 form-card-input mb-3" placeholder="Password">
-                        <div id="links" class="row mb-5">
-                            <a href="#" class="col-6 font-13 text-left float-left">¿Olvidaste tu contraseña?</a>
-                            <a href="/signup" class="col-6 font-13 text-right float-right">¿Nuevo usuario?</a>
-                        </div>
-                        <button id="btnLogin" type="submit" class="form-card-button">OK</button>
+                        <button id="btnSignup" type="submit" class="form-card-button mt-3">Registrar</button>
                     </form>
                 </div>
             </div>
@@ -41,8 +34,9 @@
         Instituto Tecnológico de Tijuana © 2019 - Tijuana, Baja California.
     </footer>
 
+
     <!-- Scripts -->
     <% include partials/g_scripts %>
-    <script type="text/javascript" src="/js/initLogin.js"></script>
+    <script type="text/javascript" src="/js/initSignup.js"></script>
 </body>
 </html>

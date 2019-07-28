@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Head -->
+    <% include partials/g_head %>
+    <title>Profile</title>
+</head>
+<body>
+    <div class="box-region">
+        <div class="box-region-header">
+            Informacion del Usuario
+        </div>
+        <div class="box-region-body">
+            <div class="col-12">
+                <strong>id:</strong> <%= user._id %>
+            </div>
+            <div class="col-12">
+                <strong>email</strong> <%= user.local.email %>
+            </div>
+            <div class="col-12">
+                <strong>password</strong> <%= user.local.password %>
+            </div>
+        </div>
+    </div>
+    
+    <footer id="footer" class="footer">
+        Instituto Tecnológico de Tijuana © 2019 - Tijuana, Baja California.
+    </footer>
+</body>
+</html>
