@@ -21,7 +21,7 @@ const app = express();
 app.set('port', process.env.PORT || 3000);
 app.set('views', [path.join(__dirname, 'views'),
                   path.join(__dirname, 'views/signals'),
-                  path.join(__dirname, 'views/user/')]);
+                  path.join(__dirname, 'views/panel/user/')]);
 
 app.set('view engine', 'ejs');
 
