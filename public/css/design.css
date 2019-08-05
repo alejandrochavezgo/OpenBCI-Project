@@ -106,15 +106,27 @@ body{
 .font-13{
     font-size: 13px;
 }
-
 .mt-15px{
     margin-top: 15px;
 }
-
+.mr-300px{
+    margin-right: 200px;
+}
+.ml-300px{
+    margin-left: 200px;
+}
+.width-100percent{
+    width: 100% !important;
+}
 .no-display{
     display: none;
 }
-
+.inline-flex{
+    display: inline-flex;
+}
+.pointer{
+    cursor: pointer;
+}
 .footer {
     left: 0;
     right: 0;
@@ -130,4 +142,11 @@ body{
 .card-expand{
     width: 500px;
     height: 250px;
+}
+
+/******************** Media Queries *****************/
+@media (min-width: 0px){
+    .mb-xs-5, .my-xs-5 {
+        margin-bottom: 3rem!important;
+    }
 }
