@@ -127,6 +127,12 @@ body{
 .pointer{
     cursor: pointer;
 }
+.no-select{
+    user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -webkit-user-select: none;
+}
 .footer {
     left: 0;
     right: 0;
@@ -143,6 +149,12 @@ body{
     width: 500px;
     height: 250px;
 }
+.zoom-1_2{
+    transition: transform .2s ease-in-out;
+}    
+.zoom-1_2:hover {
+    transform: scale(1.2);
+  }
 
 /******************** Media Queries *****************/
 @media (min-width: 0px){
