@@ -1,3 +1,4 @@
+//Modules
 const express = require('express');
 const path = require('path');
 const mongoose = require('mongoose');
@@ -7,6 +8,8 @@ const morgan = require('morgan');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const session = require('express-session');
+const Cyton = require('./node_modules/openbci-cyton');
+const {constants} = require('./node_modules/openbci-utilities');
 
 //Database settings
 const { url } = require('./config/database');
@@ -16,13 +19,24 @@ mongoose.connect(url, {
 
 require('./config/passport')(passport);
 
-//Server settings
-const app = express();
+//OpenBCI settings
+var ourBoard =  new Cyton ({
+    // hardSet:true,
+    // verbose: true
+    simulate: true
+});
+var portName = constants.OBCISimulatorPortName;
+
+//Server and Socket.io settings
+var app = express();
+var server = require('http').Server(app);
+var io = require('socket.io').listen(server);
+
 app.set('port', process.env.PORT || 3000);
 app.set('views', [path.join(__dirname, 'views'),
                   path.join(__dirname, 'views/signals'),
+                  path.join(__dirname, 'views/signals/eeg'),
                   path.join(__dirname, 'views/panel/user/')]);
-
 app.set('view engine', 'ejs');
 
 //Middlewares
@@ -44,71 +58,38 @@ require('./routes/routes')(app, passport);
 //Static files
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.listen(app.get('port'), () => {
+//Server listening
+server.listen(app.get('port'), () => {
     console.log('Server on port ', app.get('port'));
 });
 
 
-// var http = require('http'),
-//     fs = require('fs')
-// var _dirname = 'C:/Users/Alejandro Chávez/Documents/Testing/OpenBCI/OpenBCI-Project';
-// var index = fs.readFileSync(_dirname + '/Index.html');
+//Socket.io functions .............................................................................................
 
-// //Send index.html to all requests
-// var app = http.createServer(function(req, res) {
-//     res.writeHead(200, {'Content-Type': 'text/html'});
-//     res.end(index);
-// });
+//Emit OpenBCI data on connection
+io.on('connection', function(socket) {
+    // Use socket to communicate with this particular client only, sending it it's own id
+    socket.emit('welcome', { message: 'Welcome!', id: socket.id });
+    socket.on('i am client', console.log);
+});
 
-// //Socket.io server listens to our app
-// var io = require('socket.io').listen(app);
+// OpenBCI functions ..............................................................................................
 
-// // Send current time to all connected clients
-// function sendTime() {
-//     io.emit('time', { time: new Date().toJSON() });
-// }
+var g_data = 0;
+var g_text = "";
 
-// // Send current time every 10 secs
-// // setInterval(sendTime, 10000);
-
-// // Emit welcome message on connection
-// io.on('connection', function(socket) {
-//     // Use socket to communicate with this particular client only, sending it it's own id
-//     socket.emit('welcome', { message: 'Welcome!', id: socket.id });
-
-//     socket.on('i am client', console.log);
-// });
-
-// app.listen(3000);
-
-
-
-
-// // OPENBCI...............................................................................................................
-// const Cyton = require('./node_modules/openbci-cyton');
-// const {constants} = require('./node_modules/openbci-utilities');
-
-// var ourBoard =  new Cyton ({
-//     // hardSet:true,
-//     // verbose: true
-//     simulate: true
-// });
-// var g_data = 0;
-// var g_text = "";
-
-// var portName = constants.OBCISimulatorPortName;
-
-// ourBoard.connect().then(function () {
-//     ourBoard.streamStart();
-//     ourBoard.on('sample', function (sample) {
-//         for(var i = 0; i < 8; i++) {
-//             console.log("[" + i + "] -> " + sample.channelData[i]);
-//             g_data = sample.channelData[i];
-//             g_text += sample.channelData[i] + ", "
-//         }
-//         console.log(g_text);
-//         io.emit('time', { time: g_text });
-//         g_text = "";
-//         console.log("................................................................................................");
-//     });
-// });
+//Get the data flow from the OpenBCI device and emit it to all clients
+ourBoard.connect().then(function () {
+    ourBoard.streamStart();
+    ourBoard.on('sample', function (sample) {
+        for(var i = 0; i < 8; i++) {
+            console.log("[" + i + "] -> " + sample.channelData[i]);
+            g_data = sample.channelData[i];
+            g_text += sample.channelData[i] + ", "
+        }
+        console.log(g_text);
+        io.emit('time', { time: g_text });
+        g_text = "";
+        console.log("................................................................................................");
+    });
+});

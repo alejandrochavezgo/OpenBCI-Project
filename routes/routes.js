@@ -44,6 +44,11 @@ module.exports = (app, passport) => {
         res.render('signals');
     });
 
+     /********** EEG **********/
+     app.get('/eeg', hasAccess, (req, res) => {
+        res.render('eeg');
+    });
+    
      /******** Logout ********/
      app.get('/logout', (req, res) => {
         req.logout();

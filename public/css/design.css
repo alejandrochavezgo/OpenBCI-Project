@@ -133,6 +133,9 @@ body{
     -ms-user-select: none;
     -webkit-user-select: none;
 }
+.no-link, .no-link:visited,.no-link:hover,.no-link:active {
+    text-decoration:none;
+  }
 .footer {
     left: 0;
     right: 0;

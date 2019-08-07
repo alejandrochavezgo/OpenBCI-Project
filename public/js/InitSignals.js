@@ -11,8 +11,8 @@ function Init() {
                     setTimeout(() => {
                         $('#signalsCard').addClass('card-expand');
                         setTimeout(() => {
-                            $('#signals').fadeIn(400);
-                            $('#footer').fadeIn(400);
+                            $('#signals').fadeIn(600);
+                            $('#footer').fadeIn(600);
                         }, 700);
                     }, 400);
                 });
