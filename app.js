@@ -36,7 +36,9 @@ app.set('port', process.env.PORT || 3000);
 app.set('views', [path.join(__dirname, 'views'),
                   path.join(__dirname, 'views/signals'),
                   path.join(__dirname, 'views/signals/eeg'),
-                  path.join(__dirname, 'views/panel/user/')]);
+                  path.join(__dirname, 'views/panel'),
+                  path.join(__dirname, 'views/panel/tests'),
+                  path.join(__dirname, 'views/panel/user')]);
 app.set('view engine', 'ejs');
 
 //Middlewares
@@ -67,7 +69,7 @@ server.listen(app.get('port'), () => {
 //Socket.io functions .............................................................................................
 
 //Emit a welcome message and Id for the client
-io.on('connection', function(socket) {
+io.on('connection', function (socket) {
     // Use socket to communicate with this particular client only, sending it it's own id
     socket.emit('welcome', { message: 'Welcome!', id: socket.id });
     socket.on('i am client', console.log);
@@ -83,6 +85,9 @@ ourBoard.connect().then(function () {
         for(var i = 0; i < 8; i++) {
             signals.push(sample.channelData[i]);
         }
+        console.log(signals + "\n");
         io.emit('signals', { signals: signals });
     });
 });
+
+

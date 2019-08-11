@@ -23,9 +23,9 @@ function setSignal(signalInformation) {
 function init() {
 
     //meterlo dentro de un arreglo
-    for (let index = 0; index < array.length; index++) {
-        const element = array[index]; 
-    }
+    // for (let index = 0; index < array.length; index++) {
+    //     const element = array[index]; 
+    // }
 
     //Signal 1
     var signal1 = new SmoothieChart({millisPerPixel:5,labels:{precision:6},tooltip:true,timestampFormatter:SmoothieChart.timeFormatter}), 
