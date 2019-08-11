@@ -3,12 +3,65 @@
 <head>
     <!-- Head -->
     <% include partials/g_head %>
+	<script type="text/javascript" src="/js/smoothie.js"></script>
+    
     <title>EEG Signal</title>
 </head>
-<body>
-    <div style="height: 300px; width: 100%">
+<body onload="init()">
+    <!-- <div style="height: 300px; width: 100%">
         <ul id='messages'></ul>
+    </div> -->
+
+    <style>
+        div.smoothie-chart-tooltip {
+        background: #444;
+        padding: 1em;
+        margin-top: 20px;
+        font-family: consolas;
+        color: white;
+        font-size: 10px;
+        pointer-events: none;
+        }
+        .signalContainer{
+            width: 100%;
+            text-align: center; 
+        }
+    </style>
+
+    <div class="signalContainer">
+        <canvas id="signal-1" width="1000" height="80">
     </div>
+    
+    <div class="signalContainer">
+        <canvas id="signal-2" width="1000" height="80">
+    </div>
+    
+    <div class="signalContainer">
+        <canvas id="signal-3" width="1000" height="80">
+    </div>
+    
+    <div class="signalContainer">
+        <canvas id="signal-4" width="1000" height="80">
+    </div>
+    
+    <div class="signalContainer">
+        <canvas id="signal-5" width="1000" height="80">
+    </div>
+    
+    <div class="signalContainer">
+        <canvas id="signal-6" width="1000" height="80">
+    </div>
+    
+    <div class="signalContainer">
+        <canvas id="signal-7" width="1000" height="80">
+    </div>
+
+    <div class="signalContainer">
+        <canvas id="signal-8" width="1000" height="80">
+    </div>
+
+
+    
 
     <!-- Footer -->
     <% include partials/footer-no-display %>
@@ -19,6 +72,5 @@
 
     <script text="text/javascript" src="/js/initSocketIO.js"></script>    
     <script text="text/javascript" src="/js/eegActions.js"></script>
-
 </body>
 </html>

@@ -66,7 +66,7 @@ server.listen(app.get('port'), () => {
 
 //Socket.io functions .............................................................................................
 
-//Emit OpenBCI data on connection
+//Emit a welcome message and Id for the client
 io.on('connection', function(socket) {
     // Use socket to communicate with this particular client only, sending it it's own id
     socket.emit('welcome', { message: 'Welcome!', id: socket.id });
@@ -75,21 +75,14 @@ io.on('connection', function(socket) {
 
 // OpenBCI functions ..............................................................................................
 
-var g_data = 0;
-var g_text = "";
-
 //Get the data flow from the OpenBCI device and emit it to all clients
 ourBoard.connect().then(function () {
     ourBoard.streamStart();
     ourBoard.on('sample', function (sample) {
+        var signals = [];
         for(var i = 0; i < 8; i++) {
-            console.log("[" + i + "] -> " + sample.channelData[i]);
-            g_data = sample.channelData[i];
-            g_text += sample.channelData[i] + ", "
+            signals.push(sample.channelData[i]);
         }
-        console.log(g_text);
-        io.emit('time', { time: g_text });
-        g_text = "";
-        console.log("................................................................................................");
+        io.emit('signals', { signals: signals });
     });
 });
